@@ -9,7 +9,7 @@ class Player extends GameObject
 	
 	void update(ArrayList<GameObject> rest_of_the_world)
 	{
-		this.velocity.y += 1;
+		this.velocity.y += 2;
 		
 		this.move_by(this.velocity.x, 0);
 		
