@@ -62,17 +62,43 @@ class Game
 	}
 	
 	void display()
-	{
-		pushMatrix();
-		translate(-this.camera_position.x, -this.camera_position.y);
-		
-		this.ground.display();
-		this.platform_manager.display();
-		this.player.display();
-		
-		popMatrix();
-	}
-	
+		{
+			PImage bg = this.texture_manager.get("background");
+			
+			if (bg != null) {
+				// 1. Horizontal Scroll (Parallax)
+				int srcX = 200;  
+				// Zooming in means taking a smaller crop from the original image width
+				int cropWidth = 700;   // Decreased from 900 to "zoom in" more horizontally
+				int cropHeight = 350;  // Decreased from 500 to "zoom in" more vertically
+				
+				float dynamicSrcX = (srcX + (this.camera_position.x * 0.1f)) % (bg.width - cropWidth);
+
+				// 2. Vertical Alignment to Ground
+				float groundScreenY = this.bedrock_level - this.camera_position.y;
+				
+				// 3. ZOOM & STRETCH FIX:
+				// Set the background's rendering Y position to 0 (the top of the screen)
+				// Then calculate how tall it needs to be to reach from the top of the window (0) down to the ground line!
+				float bgY = 0;
+				float bgHeight = groundScreenY; // This automatically scales it vertically to cover the black bar
+
+				// 4. Draw it stretched to fill from the absolute top of the screen down to the ground
+				image(bg, 0, bgY, width, bgHeight, (int)dynamicSrcX, 0, (int)dynamicSrcX + cropWidth, cropHeight);
+			} else {
+				background(135, 206, 235); 
+			}
+
+			// --- YOUR EXISTING CAMERA MATRIX CODE ---
+			pushMatrix();
+			translate(-this.camera_position.x, -this.camera_position.y);
+
+			this.ground.display();
+			this.platform_manager.display();
+			this.player.display();
+
+			popMatrix();
+		}	
 	boolean is_running()
 	{
 		return this.running;
