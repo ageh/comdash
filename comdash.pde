@@ -15,11 +15,11 @@ void draw()
 {
     input_manager.reset_for_frame();
     
-    background(0);
+    background(138, 244, 255);
     
     if (!game.is_running())
     {
-        fill(255, 50, 50);
+        fill(255, 128, 0);
         textSize(96);
         textAlign(CENTER);
         text("GAME OVER", width / 2, height / 2);
