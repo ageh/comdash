@@ -39,7 +39,7 @@ class PlatformManager
 				{
 					this.last_fire_platform_millis = millis();
 				}
-				String texture_name = is_fire_platform ? "platform-fire" : "platform-grass";
+				String texture_name = is_fire_platform ? "fire-platform" : "platform-grass";
 				this.platforms.add(make_static_rectangle(new PVector(right + 100, y), 181, 30, this.texture_manager.get(texture_name)));
 			}
 		}
