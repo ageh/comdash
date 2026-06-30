@@ -41,6 +41,13 @@ class Game
 		{
 			this.player.jump();
 		}
+
+		// Dash: press 'D' to dash; hold 'A' to dash left
+		if (this.input_manager.was_key_pressed('D'))
+		{
+			float dir = this.input_manager.is_key_down('A') ? -1 : 1;
+			this.player.dash(dir);
+		}
 	}
 	
 	void update()
@@ -50,6 +57,17 @@ class Game
 		var obstacles = this.create_obstacles();
 		this.player.update(obstacles);
 		this.camera_position.x += this.scroll_speed;
+
+		// If the player is dashing, nudge the camera forward toward the player's X
+		if (this.player.isCurrentlyDashing())
+		{
+			float targetX = this.player.left() - 150; // keep player a bit from left edge
+			if (targetX > this.camera_position.x)
+			{
+				this.camera_position.x = lerp(this.camera_position.x, targetX, 0.25);
+			}
+		}
+
 		this.camera_position.y = min(this.player.top() - 100, this.bedrock_level - height);
 		
 		this.ground.update(this.camera_position.x);
@@ -64,7 +82,19 @@ class Game
 	void display()
 	{
 		pushMatrix();
-		translate(-this.camera_position.x, -this.camera_position.y);
+		// small camera shake during dash
+		float shakeX = 0;
+		float shakeY = 0;
+		if (this.player.isCurrentlyDashing())
+		{
+			float p = this.player.getDashProgress();
+			float s = sin(p * PI); // peak in middle of dash
+			float maxShake = 8; // pixels
+			float mag = s * maxShake;
+			shakeX = random(-mag, mag);
+			shakeY = random(-mag*0.5, mag*0.5);
+		}
+		translate(-this.camera_position.x - shakeX, -this.camera_position.y - shakeY);
 		
 		this.ground.display();
 		this.platform_manager.display();
