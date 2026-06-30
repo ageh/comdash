@@ -11,7 +11,7 @@ class TextureManager
     this.textures.put("snow", loadImage("textures/snow.png"));
     this.textures.put("platform-grass", loadImage("textures/platform-grass.png"));
     this.textures.put("background", loadImage("textures/background.jpg"));
-    
+    this.textures.put("cloud", loadImage("textures/cloud.png"));
     this.debugTextures();
 	}
 	
