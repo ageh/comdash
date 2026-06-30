@@ -54,7 +54,7 @@ class Player extends GameObject
 	{
 		if (!this.inAir)
 		{
-			this.velocity.y = -27;
+			this.velocity.y = -42;
 			this.inAir = true;
 		}
 	}

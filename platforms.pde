@@ -8,7 +8,8 @@ class PlatformManager
 	private float maximum_height;
 	private float minimum_height;
 	private float minimum_gap;
-	
+	private int last_fire_platform_millis = 0;
+
 	PlatformManager(float minimum_height, float maximum_height, float minimum_gap, TextureManager texture_manager)
 	{
 		this.texture_manager = texture_manager;
@@ -33,7 +34,13 @@ class PlatformManager
 			if (spawn_chance < 0.1)
 			{
 				float y = random(this.maximum_height, this.minimum_height);
-				this.platforms.add(make_static_rectangle(new PVector(right + 100, y), 181, 30, this.texture_manager.get("platform-grass")));
+				boolean is_fire_platform = millis() - this.last_fire_platform_millis >= 5000;
+				if (is_fire_platform)
+				{
+					this.last_fire_platform_millis = millis();
+				}
+				String texture_name = is_fire_platform ? "platform-fire" : "platform-grass";
+				this.platforms.add(make_static_rectangle(new PVector(right + 100, y), 181, 30, this.texture_manager.get(texture_name)));
 			}
 		}
 	}
