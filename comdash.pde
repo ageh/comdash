@@ -9,7 +9,7 @@ void setup()
 	ellipseMode(CORNER);
 	
 	input_manager = new InputManager();
-	game = new Game(input_manager, 2000, 4.2);
+	game = new Game(input_manager, 2000, 8.5);
 }
 
 void draw()
