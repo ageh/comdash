@@ -9,7 +9,7 @@ void setup()
     
     input_manager = new InputManager();
     SoundManager sound_manager = new SoundManager(this);
-    game = new Game(input_manager, sound_manager, 2000, 4.2);
+    game = new Game(input_manager, sound_manager, 2000, 8.5);
 }
 void draw()
 {
