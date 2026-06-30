@@ -6,12 +6,13 @@ class TextureManager
 	
 	TextureManager()
 	{
-		this.textures.put("player", loadImage("textures/player.png"));
-		this.textures.put("grass", loadImage("textures/grass.png"));
-		this.textures.put("snow", loadImage("textures/snow.png"));
-		this.textures.put("platform-grass", loadImage("textures/platform-grass.png"));
-		
-		this.debugTextures();
+    this.textures.put("player", loadImage("textures/player.png"));
+    this.textures.put("grass", loadImage("textures/grass.png"));
+    this.textures.put("snow", loadImage("textures/snow.png"));
+    this.textures.put("platform-grass", loadImage("textures/platform-grass.png"));
+    this.textures.put("background", loadImage("textures/background.jpg"));
+    
+    this.debugTextures();
 	}
 	
 	PImage get(String key)
@@ -27,4 +28,5 @@ class TextureManager
 			println(k + " -> " + (img == null ? "NULL" : (img.width + "x" + img.height)));
 		}
 	}
+	
 }

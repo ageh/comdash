@@ -63,14 +63,16 @@ class Game
 	
 	void display()
 	{
-		pushMatrix();
-		translate(-this.camera_position.x, -this.camera_position.y);
-		
-		this.ground.display();
-		this.platform_manager.display();
-		this.player.display();
-		
-		popMatrix();
+    image(this.texture_manager.get("background"), 0, 0, width, height);
+    
+    pushMatrix();
+    translate(-this.camera_position.x, -this.camera_position.y);
+    
+    this.ground.display();
+    this.platform_manager.display();
+    this.player.display();
+    
+    popMatrix();
 	}
 	
 	boolean is_running()
