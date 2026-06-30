@@ -122,3 +122,4 @@ class InputManager
 		return key_code;
 	}
 }
+
