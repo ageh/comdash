@@ -10,7 +10,7 @@ class Player extends GameObject
 	
 	void update(ArrayList<GameObject> rest_of_the_world)
 	{
-		this.velocity.y += 1;
+		this.velocity.y += 2;
 
 		float dt = frameRate > 0 ? 1.0/frameRate : 1.0/60.0;
 		this.update_dash_timers(dt);
@@ -65,7 +65,7 @@ class Player extends GameObject
 	{
 		if (!this.inAir)
 		{
-			this.velocity.y = -27;
+			this.velocity.y = -42;
 			this.inAir = true;
 		}
 	}
