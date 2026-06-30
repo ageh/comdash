@@ -12,7 +12,7 @@ class TextureManager
 		this.textures.put("platform-grass", loadImage("textures/platform-grass.png"));
 		this.textures.put("background", loadImage("textures/background.png"));
 		this.textures.put("fire-platform", loadImage("textures/fire_platform.png"));
-
+		this.textures.put("cloud", loadImage("textures/cloud.png"));
 		this.debugTextures();
 	}
 	
@@ -29,4 +29,5 @@ class TextureManager
 			println(k + " -> " + (img == null ? "NULL" : (img.width + "x" + img.height)));
 		}
 	}
+	
 }
